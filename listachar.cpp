@@ -30,8 +30,12 @@ ListaChar * ListaChar::aggiungiNodo(char x, ListaChar *l){
 }
 
 int ListaChar::trova(char *a, ListaChar *l) const {
-    if(!a)
+  if(!a)
         return 2;
     if(a)
-        return trova(a+1, l->next);
+        if(a[0]==l->info)
+            return trova(a+1, l->next);
+    if(a && !l)
+        return 5;
+    return trova(a, l->next);
 }
