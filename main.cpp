@@ -1,7 +1,6 @@
-#include "listachar.h"
+#include "lista.h"
 #include<iostream>
 using namespace std;
-
 
 
 int main()
@@ -22,10 +21,12 @@ int main()
 	b=b->costruisci(dim2);
 	b->visualizzaLista(b);
 
-	if(a==b)
+
+	if(*a==*b)
 		cout<<"le liste sono uguali";
 	else
 		cout<<"le liste non sono uguali";
+
 
 	/*a=a->togliNodo(a,'o');
     cout<<"---------"<<endl;
@@ -33,8 +34,8 @@ int main()
 	a->visualizzaLista(a);*/
 
 
-
-	/*cout<<"inserisci match da trovare nella lista: ";
+/*
+	cout<<"inserisci match da trovare nella lista: ";
     char s[dim]={};
     cin>>s;
     bool m=a->trova(s,a);
@@ -42,6 +43,7 @@ int main()
     	cout<<"il match è stato trovato."<<endl;
     else
     	cout<<"il match non è stato trovato."<<endl;
+
     cout<<"--------"<<endl<<"inserisci nuova lista, dimensione: ";
     int dim2;
     cin>>dim2;
@@ -54,3 +56,4 @@ int main()
     p->visualizzaLista(p);
     */
 }
+
