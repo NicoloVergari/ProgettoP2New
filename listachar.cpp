@@ -1,10 +1,9 @@
-#include"listachar.h"
+#include "lista.h"
 #include<iostream>
 using namespace std;
 
+
 ListaChar::ListaChar(char i='\0', ListaChar *n=0) : info(i), next(n) {}   // costruttore
-
-
 /*
 ListaChar::ListaChar(const ListaChar& o) {				// costruttore di copia
 	info = o.info;
@@ -22,11 +21,20 @@ ListaChar * ListaChar::costruisci(int dim){
         return 0;
 }
 
-ListaChar * ListaChar::aggiungiNodo(char x, ListaChar *l){          // aggiungo il nuovo nodo all'inizio della lista
+void ListaChar::visualNodo(ListaChar *l) const {
+    cout<<l->info<<" -- ";
+    cout<<l;
+}
+
+void ListaChar::visualNodoNext(ListaChar *l) const{
+    cout<<l->next->info<<" -- ";
+    cout<<l->next;
+}
+
+ListaChar * ListaChar::aggiungiNodo(char x, ListaChar *l){
     ListaChar *a=new ListaChar(x,l);
     return a;
 }
-
 void ListaChar::visualizzaLista(ListaChar *l) const{
     if(l)
     {
@@ -42,7 +50,7 @@ ListaChar * ListaChar::unisci(ListaChar *a, ListaChar *b){
 	return a;
 }
 
-bool ListaChar::trova(char *a, ListaChar *l){
+bool ListaChar::trova(char *a, ListaChar *l) const{
     if(a[0]=='\0')
         return true;
     if(a && !l)
@@ -76,26 +84,20 @@ ListaChar * ListaChar::togliNodo(ListaChar *l, char i){
 }
 
 
-bool ListaChar::equals(ListaChar *a, ListaChar *b){
-	bool t=true;
-	while(a && t)
-	{
-		if(a->info != b->info)
-			t=false;
-		else{
-			a=a->next;
-			b=b->next;
-		}
-	}
-
+bool ListaChar::equals(const ListaChar *a, const ListaChar *b){
 	if(!a && !b)
-		t=true;
+		return true;
+	if(!a || !b)
+		return false;
+	if(a->info!=b->info)
+		return false;
+	if(a->info==b->info)
+		return equals(a->next, b->next);
 
-	return t;
 }
 
 bool ListaChar::operator==(const ListaChar &l) const{
-	return true;
+	return equals(this,&l);
 }
 
 ListaChar * ListaChar::insRe(ListaChar *l, ListaChar *p){
@@ -116,3 +118,4 @@ ListaChar * ListaChar::reverse(ListaChar *l){
 	else
 		return 0;
 }
+
