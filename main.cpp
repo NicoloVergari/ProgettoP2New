@@ -5,14 +5,18 @@ using namespace std;
 
 int main()
 {
-
-    cout<<"inserisci dimensione lista di char: ";
+ cout<<"inserisci dimensione lista di char: ";
 	int dim;
 	cin>>dim;
 	ListaChar *a=0;
 	a=a->costruisci(dim);
-	a->visualizzaLista(a);
+	a->visualizzaLista(*a);
 
+	/*cout<<"--------"<<endl;
+	*a+1;
+	a->visualizzaLista(*a);*/
+
+	/*
 	cout<<"--------"<<endl;
 	cout<<"inserisci dimensione lista di char: ";
 	int dim2;
@@ -25,13 +29,13 @@ int main()
 	if(*a==*b)
 		cout<<"le liste sono uguali";
 	else
-		cout<<"le liste non sono uguali";
+		cout<<"le liste non sono uguali";*/
 
 
-	/*a=a->togliNodo(a,'o');
+	a=a->togliNodo(a,'o');
     cout<<"---------"<<endl;
-    a=a->reverse(a);
-	a->visualizzaLista(a);*/
+    //a=a->reverse(a);
+	a->visualizzaLista(*a);
 
 
 /*
