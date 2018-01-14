@@ -21,6 +21,7 @@ class ListaChar {
     bool trova(char *, ListaChar *) const;
     bool operator==(const ListaChar &) const;
     ListaChar* operator+(ListaChar *);
+    ListaChar *opiu(ListaChar*, int n);
     ListaChar *unisci(ListaChar *, ListaChar *);
     void visualNodoChar(ListaChar *) const;
     void visualNodo(ListaChar *) const;
