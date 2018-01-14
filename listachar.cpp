@@ -35,11 +35,12 @@ ListaChar * ListaChar::aggiungiNodo(char x, ListaChar *l){
     ListaChar *a=new ListaChar(x,l);
     return a;
 }
-void ListaChar::visualizzaLista(ListaChar *l) const{
-    if(l)
+
+void ListaChar::visualizzaLista(const ListaChar &l) const{
+    if(&l)
     {
-        cout<<"Nodo: "<<l->info<<endl;
-        visualizzaLista(l->next);
+        cout<<"Nodo: "<<l.info<<endl;
+        visualizzaLista(*l.next);
     }
 }
 
@@ -63,23 +64,24 @@ bool ListaChar::trova(char *a, ListaChar *l) const{
 
 ListaChar * ListaChar::togliNodo(ListaChar *l, char i){
 	ListaChar *f=l;
-	if(l->info==i){
-		ListaChar *b=l;
-		l=l->next;
-		delete b;
-		f=l;
-	}
-
-	/*while(l){
-		if((l->next)==i){
-			ListaChar *a=l;
+	while(l){
+		if(l->info==i){
+			ListaChar *b=l;
 			l=l->next;
-			delete a;
+			delete b;
+			f=l;
 		}
 		else{
-			l=l->next;
+			if((l->next)->info==i){
+				ListaChar *a=(l->next)->next;
+				delete l->next;
+				l->next=a;
+				l=l->next;
+			}
+			else
+				l=l->next;
 		}
-	}*/
+	}
 	return f;
 }
 
@@ -93,12 +95,24 @@ bool ListaChar::equals(const ListaChar *a, const ListaChar *b){
 		return false;
 	if(a->info==b->info)
 		return equals(a->next, b->next);
-
 }
 
 bool ListaChar::operator==(const ListaChar &l) const{
 	return equals(this,&l);
 }
+
+ListaChar * ListaChar::operator+(int n){
+	return opiu(this,n);
+}
+
+ListaChar * ListaChar::opiu(ListaChar *a, int n){
+	while(a){
+		a->info=a->info+n;
+		a=a->next;
+	}
+	return a;
+}
+
 
 ListaChar * ListaChar::insRe(ListaChar *l, ListaChar *p){
 	if(!l){
@@ -118,4 +132,3 @@ ListaChar * ListaChar::reverse(ListaChar *l){
 	else
 		return 0;
 }
-
